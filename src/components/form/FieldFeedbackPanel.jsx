@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import { IFieldError } from '../../types';
-
-export default ({valid, fieldError}: {valid: boolean, fieldError?: IFieldError}) => {
+export default ({valid, fieldError}) => {
     if (valid) {
       return <span className='glyphicon glyphicon-ok form-control-feedback' aria-hidden='true'></span>;
     }

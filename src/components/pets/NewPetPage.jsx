@@ -1,24 +1,12 @@
 import * as React from 'react';
 
-import { IOwner, IEditablePet, ISelectOption } from '../../types';
 
 import LoadingPanel from './LoadingPanel';
 import PetEditor from './PetEditor';
 
 import createPetEditorModel from './createPetEditorModel';
 
-interface INewPetPageProps {
-  params: { ownerId: string };
-}
-
-interface INewPetPageState {
-  pet: IEditablePet;
-  owner: IOwner;
-  pettypes: ISelectOption[];
-}
-
-const NEW_PET: IEditablePet = {
-    // @ts-ignore
+const NEW_PET = {
   id: null,
   isNew: true,
   name: '',
@@ -26,7 +14,7 @@ const NEW_PET: IEditablePet = {
   typeId: undefined
 };
 
-export default class NewPetPage extends React.Component<INewPetPageProps, INewPetPageState> {
+export default class NewPetPage extends React.Component {
 
   componentDidMount() {
     createPetEditorModel(this.props.params.ownerId, Promise.resolve(NEW_PET))

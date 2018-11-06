@@ -1,18 +1,9 @@
 import * as React from 'react';
 import OwnerEditor from './OwnerEditor';
 
-import { IOwner } from '../../types';
 import { url } from '../../util';
 
-interface IEditOwnerPageProps {
-  params?: { ownerId?: string };
-}
-
-interface IEditOwnerPageState {
-  owner: IOwner;
-}
-
-export default class EditOwnerPage extends React.Component<IEditOwnerPageProps, IEditOwnerPageState> {
+export default class EditOwnerPage extends React.Component {
   componentDidMount() {
     const { params } = this.props;
 

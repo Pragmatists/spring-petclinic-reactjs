@@ -1,9 +1,7 @@
-import { IHttpMethod } from '../types';
-
-declare var __API_SERVER_URL__;
+/* global __API_SERVER_URL__ */
 const BACKEND_URL = (typeof __API_SERVER_URL__ === 'undefined' ? 'http://localhost:9966' : __API_SERVER_URL__);
 
-export const url = (path: string): string => `${BACKEND_URL}/petclinic/${path}`;
+export const url = (path) => `${BACKEND_URL}/petclinic/${path}`;
 
 /**
  * path: relative PATH without host and port (i.e. '/api/123')
@@ -11,7 +9,7 @@ export const url = (path: string): string => `${BACKEND_URL}/petclinic/${path}`;
  * onSuccess: callback handler if request succeeded. Succeeded means it could technically be handled (i.e. valid json is returned)
  * regardless of the HTTP status code.
  */
-export const submitForm = (method: IHttpMethod, path: string, data: any, onSuccess: (status: number, response: any) => void) => {
+export const submitForm = (method, path, data, onSuccess) => {
   const requestUrl = url(path);
 
   const fetchParams = {

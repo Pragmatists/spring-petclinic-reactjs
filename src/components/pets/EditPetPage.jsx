@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { IOwner, IEditablePet, ISelectOption } from '../../types';
-
 import { url } from '../../util';
 
 import LoadingPanel from './LoadingPanel';
@@ -9,20 +7,7 @@ import PetEditor from './PetEditor';
 
 import createPetEditorModel from './createPetEditorModel';
 
-interface IEditPetPageProps {
-  params: {
-    ownerId: string,
-    petId: string
-  };
-}
-
-interface IEditPetPageState {
-  pet: IEditablePet;
-  owner: IOwner;
-  pettypes: ISelectOption[];
-}
-
-export default class EditPetPage extends React.Component<IEditPetPageProps, IEditPetPageState> {
+export default class EditPetPage extends React.Component {
 
   componentDidMount() {
     const { params } = this.props;

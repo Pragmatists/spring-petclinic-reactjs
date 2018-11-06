@@ -1,22 +1,14 @@
 import * as React from 'react';
 
-import { IConstraint, IError, IInputChangeHandler } from '../../types';
-
 import FieldFeedbackPanel from './FieldFeedbackPanel';
 
-const NoConstraint: IConstraint = {
-  message: '',
-  validate: v => true
-};
 
-
-export default ({object, error, name, constraint = NoConstraint, label, onChange}: { object: any, error?: IError, name: string, constraint?: IConstraint, label: string, onChange: IInputChangeHandler }) => {
+export default ({object, error, name, constraint = {validate: () => true}, label, onChange}) => {
 
   const handleOnChange = event => {
     const { value } = event.target;
 
     // run validation (if any)
-    let error = null;
     const fieldError = constraint.validate(value) === false ? { field: name, message: constraint.message } : undefined;
 
     // invoke callback

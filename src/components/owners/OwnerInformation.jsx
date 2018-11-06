@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import { Link } from 'react-router';
-import { IOwner } from '../../types';
 
-export default ({owner}: { owner: IOwner }) => (
+export default ({owner}) => (
   <section>
     <h2>Owner Information</h2>
 

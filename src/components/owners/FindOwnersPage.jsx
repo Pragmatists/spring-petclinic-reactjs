@@ -1,17 +1,12 @@
 import * as React from 'react';
 
 import {Link} from 'react-router';
-import {IOwner} from '../../types';
 import {url} from '../../util';
 
 import OwnersTable from './OwnersTable';
 
-interface IFindOwnersPageState {
-    owners?: IOwner[];
-}
 
-
-export default class FindOwnersPage extends React.Component<{}, IFindOwnersPageState> {
+export default class FindOwnersPage extends React.Component {
     state = {
         owners: undefined
     };

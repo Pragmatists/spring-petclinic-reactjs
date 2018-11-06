@@ -1,14 +1,7 @@
 import * as React from 'react';
 import image from '../styles/images/pets.png';
 
-interface IErrorPageState {
-  error?: {
-    status: string;
-    message: string;
-  };
-}
-
-export default class ErrorPage extends React.Component<void, IErrorPageState> {
+export default class ErrorPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -17,23 +10,23 @@ export default class ErrorPage extends React.Component<void, IErrorPageState> {
   componentDidMount() {
     fetch('http://localhost:9966/api/oups')
       .then(response => response.json())
-      .then(error => this.setState({error}));
+      .then(error => this.setState({ error }));
   }
 
   render() {
     const { error } = this.state;
 
     return <span>
-      <img src={image} />
+      <img src={image} alt="error" />
 
       <h2>Something happened...</h2>
-      { error ?
+      {error ?
         <span>
           <p><b>Status:</b> {error.status}</p>
           <p><b>Message:</b> {error.message}</p>
         </span>
         :
-        <p><b>Unkown error</b></p>
+        <p><b>Unknown error</b></p>
       }
     </span>;
   }

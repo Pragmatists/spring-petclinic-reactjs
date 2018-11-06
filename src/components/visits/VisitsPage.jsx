@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import {IError, IOwner, IPet, IRouterContext, IVisit} from '../../types';
-
 import {submitForm, url} from '../../util';
 import {NotEmpty} from '../form/Constraints';
 
@@ -11,24 +9,9 @@ import PetDetails from './PetDetails';
 import * as PropTypes from 'prop-types';
 
 
-interface IVisitsPageProps {
-    params: {
-        ownerId: string,
-        petId: string
-    };
-}
+export default class VisitsPage extends React.Component {
 
-interface IVisitsPageState {
-    visit: IVisit;
-    owner: IOwner;
-    pet: IPet;
-    error?: IError;
-}
-
-export default class VisitsPage extends React.Component<IVisitsPageProps, IVisitsPageState> {
-
-    // @ts-ignore
-    context: IRouterContext;
+    context;
 
     static contextTypes = {
         router: PropTypes.object.isRequired
@@ -73,8 +56,6 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
             pet: pet
         };
 
-        console.log(request);
-
         const url = 'api/visits';
         submitForm('POST', url, request, (status, response) => {
             if (status === 200 || status === 201 || status === 204) {
@@ -88,7 +69,7 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
         });
     }
 
-    onInputChange(name: string, value: string) {
+    onInputChange(name, value) {
         const {visit} = this.state;
 
         this.setState(

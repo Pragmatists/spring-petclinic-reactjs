@@ -1,26 +1,15 @@
 import * as React from 'react';
-import {submitForm, url} from '../../util';
+import { submitForm, url } from '../../util';
 
 import Input from '../form/Input';
 
-import {Digits, NotEmpty} from '../form/Constraints';
+import { Digits, NotEmpty } from '../form/Constraints';
 
-import {IError, IFieldError, IOwner, IRouterContext} from '../../types';
 import * as PropTypes from 'prop-types';
 
-interface IOwnerEditorProps {
-    initialOwner?: IOwner;
-}
+export default class OwnerEditor extends React.Component {
 
-interface IOwnerEditorState {
-    owner: IOwner;
-    error?: IError;
-}
-
-export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwnerEditorState> {
-
-    // @ts-ignore
-    context: IRouterContext;
+    context;
 
     static contextTypes = {
         router: PropTypes.object.isRequired
@@ -44,9 +33,8 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
         const url = owner.isNew ? 'api/owners' : 'api/owners/' + owner.id;
         submitForm(owner.isNew ? 'POST' : 'PUT', url, owner, (status, response) => {
             if (status === 200 || status === 201 || status === 204) {
-                const newOwner = response as IOwner;
-                this.context.router.push({
-                    pathname: '/owners/' + (newOwner.id || owner.id)
+              this.context.router.push({
+                    pathname: '/owners/' + (response.id || owner.id)
                 });
             } else {
                 console.log('ERROR?!...', response);
@@ -55,7 +43,7 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
         });
     }
 
-    onInputChange(name: string, value: string, fieldError?: IFieldError) {
+    onInputChange(name, value, fieldError) {
         const {owner, error} = this.state;
         const modifiedOwner = Object.assign({}, owner, {[name]: value});
         const newFieldErrors = error

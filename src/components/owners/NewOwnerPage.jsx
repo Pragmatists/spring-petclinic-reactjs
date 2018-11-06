@@ -1,10 +1,7 @@
 import * as React from 'react';
 import OwnerEditor from './OwnerEditor';
 
-import {IOwner} from '../../types';
-
-const newOwner = (): IOwner => ({
-// @ts-ignore
+const newOwner = () => ({
     id: null,
     isNew: true,
     firstName: '',
