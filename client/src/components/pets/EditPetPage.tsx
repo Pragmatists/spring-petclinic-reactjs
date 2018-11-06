@@ -27,7 +27,7 @@ export default class EditPetPage extends React.Component<IEditPetPageProps, IEdi
   componentDidMount() {
     const { params } = this.props;
 
-    const fetchUrl = url(`/api/owners/${params.ownerId}/pets/${params.petId}`);
+    const fetchUrl = url(`api/pets/${params.petId}`);
 
     const loadPetPromise = fetch(fetchUrl).then(response => response.json());
 

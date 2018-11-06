@@ -41,12 +41,12 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
 
     const { owner } = this.state;
 
-    const url = owner.isNew ? '/api/owner' : '/api/owner/' + owner.id;
+    const url = owner.isNew ? 'api/owners' : 'api/owners/' + owner.id;
     submitForm(owner.isNew ? 'POST' : 'PUT', url, owner, (status, response) => {
-      if (status === 200 || status === 201) {
+      if (status === 200 || status === 201 || status === 204) {
         const newOwner = response as IOwner;
         this.context.router.push({
-          pathname: '/owners/' + newOwner.id
+          pathname: '/owners/' + (newOwner.id || owner.id)
         });
       } else {
         console.log('ERROR?!...', response);
@@ -70,7 +70,7 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
     return (
       <span>
         <h2>New Owner</h2>
-        <form className='form-horizontal' method='POST' action={url('/api/owner')}>
+        <form className='form-horizontal' method='POST' action={url('api/owners')}>
           <div className='form-group has-feedback'>
             <Input object={owner} error={error} constraint={NotEmpty} label='First Name' name='firstName' onChange={this.onInputChange} />
             <Input object={owner} error={error} constraint={NotEmpty} label='Last Name' name='lastName' onChange={this.onInputChange} />
